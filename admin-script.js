@@ -1,5 +1,5 @@
 // Password Protection
-const PASSWORD = 'admin123'; // Change this to your desired password
+const PASSWORD = 'coolness'; // Change this to your desired password
 
 class PasswordProtection {
     constructor() {
