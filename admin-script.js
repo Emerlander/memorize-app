@@ -8,6 +8,8 @@ class PasswordProtection {
         this.passwordInput = document.getElementById('passwordInput');
         this.passwordError = document.getElementById('passwordError');
         this.adminContent = document.getElementById('adminContent');
+        this.toggleButton = document.getElementById('togglePassword');
+        this.toggleIcon = document.getElementById('toggleIcon');
 
         this.init();
     }
@@ -27,6 +29,15 @@ class PasswordProtection {
         this.passwordForm.addEventListener('submit', (e) => {
             e.preventDefault();
             this.checkPassword();
+        });
+
+        // Toggle password visibility
+        this.toggleButton.addEventListener('click', () => {
+            const type = this.passwordInput.type === 'password' ? 'text' : 'password';
+            this.passwordInput.type = type;
+
+            // Toggle icon
+            this.toggleIcon.textContent = type === 'password' ? '👁️' : '👁️‍🗨️';
         });
     }
 

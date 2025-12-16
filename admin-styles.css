@@ -44,17 +44,41 @@
     gap: 15px;
 }
 
+.password-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
 #passwordInput {
     padding: 12px;
+    padding-right: 45px;
     border: 2px solid #e0e0e0;
     border-radius: 8px;
     font-size: 16px;
     transition: border-color 0.3s;
+    width: 100%;
 }
 
 #passwordInput:focus {
     outline: none;
     border-color: #2e7d32;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 18px;
+    color: #666;
+    transition: color 0.3s;
+}
+
+.password-toggle:hover {
+    color: #2e7d32;
 }
 
 #passwordForm button {
