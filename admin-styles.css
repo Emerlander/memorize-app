@@ -146,6 +146,126 @@ header p {
     font-size: 1.5rem;
 }
 
+/* CSV Upload Styles */
+.csv-upload-section {
+    background: linear-gradient(135deg, #f5faf5 0%, #ffffff 100%);
+    border: 2px solid #e8f5e8;
+}
+
+.section-description {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+.csv-upload-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    border: 2px dashed #81c784;
+}
+
+.btn-upload {
+    background: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.btn-upload:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+}
+
+.file-name {
+    color: #666;
+    font-style: italic;
+}
+
+.csv-info {
+    background: #f0f8f0;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.csv-info h4 {
+    color: #2e7d32;
+    margin-bottom: 10px;
+}
+
+.csv-info p {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.csv-info code {
+    display: block;
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+    border-left: 4px solid #4caf50;
+    font-family: monospace;
+    color: #333;
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+.divider {
+    text-align: center;
+    margin: 30px 0;
+    position: relative;
+    color: #999;
+    font-weight: bold;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 45%;
+    height: 1px;
+    background: #e0e0e0;
+}
+
+.divider::before {
+    left: 0;
+}
+
+.divider::after {
+    right: 0;
+}
+
+.status-message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+}
+
+.status-message.success {
+    background: #e8f5e8;
+    color: #2e7d32;
+    border: 1px solid #81c784;
+    display: block;
+}
+
+.status-message.error {
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef5350;
+    display: block;
+}
+
 .exercise-form {
     display: flex;
     flex-direction: column;

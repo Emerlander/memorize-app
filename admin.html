@@ -32,8 +32,36 @@
         </header>
 
         <main>
+            <!-- CSV Upload Section -->
+            <div class="admin-section csv-upload-section">
+                <h2>📁 Upload CSV File</h2>
+                <p class="section-description">Upload a CSV file with sentences. Each row should contain words in the correct order.</p>
+
+                <div class="csv-upload-box">
+                    <input type="file" id="csvFileInput" accept=".csv" style="display: none;">
+                    <button id="csvUploadBtn" class="btn-upload">Choose CSV File</button>
+                    <span id="csvFileName" class="file-name">No file selected</span>
+                </div>
+
+                <div class="csv-info">
+                    <h4>CSV Format:</h4>
+                    <p>Each line should contain one sentence with words in the correct order.</p>
+                    <p>Example:</p>
+                    <code>The cat is sleeping peacefully<br>
+                    She loves reading books daily<br>
+                    We are going to school</code>
+
+                    <button id="downloadTemplateBtn" class="btn-secondary">Download Sample CSV</button>
+                </div>
+
+                <button id="processCsvBtn" class="btn-primary" disabled>Import Exercises from CSV</button>
+                <div id="csvStatus" class="status-message"></div>
+            </div>
+
+            <div class="divider">OR</div>
+
             <div class="admin-section">
-                <h2>Add New Exercise</h2>
+                <h2>Add Single Exercise</h2>
                 <form id="exerciseForm" class="exercise-form">
                     <div class="form-group">
                         <label for="wordsInput">Words (comma-separated):</label>

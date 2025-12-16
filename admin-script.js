@@ -79,8 +79,17 @@ class AdminPanel {
         this.importBtn = document.getElementById('importBtn');
         this.importFile = document.getElementById('importFile');
 
+        // CSV Upload elements
+        this.csvFileInput = document.getElementById('csvFileInput');
+        this.csvUploadBtn = document.getElementById('csvUploadBtn');
+        this.csvFileName = document.getElementById('csvFileName');
+        this.processCsvBtn = document.getElementById('processCsvBtn');
+        this.csvStatus = document.getElementById('csvStatus');
+        this.downloadTemplateBtn = document.getElementById('downloadTemplateBtn');
+
         this.exercises = [];
         this.editingIndex = -1;
+        this.csvData = null;
 
         this.init();
     }
@@ -105,6 +114,12 @@ class AdminPanel {
         this.exportBtn.addEventListener('click', () => this.exportData());
         this.importBtn.addEventListener('click', () => this.importFile.click());
         this.importFile.addEventListener('change', (e) => this.importData(e));
+
+        // CSV Upload events
+        this.csvUploadBtn.addEventListener('click', () => this.csvFileInput.click());
+        this.csvFileInput.addEventListener('change', (e) => this.handleCsvFileSelect(e));
+        this.processCsvBtn.addEventListener('click', () => this.processCsvFile());
+        this.downloadTemplateBtn.addEventListener('click', () => this.downloadCsvTemplate());
     }
 
     handleFormSubmit(e) {
@@ -271,6 +286,108 @@ class AdminPanel {
         setTimeout(() => {
             messageDiv.remove();
         }, 3000);
+    }
+
+    // CSV Upload Methods
+    handleCsvFileSelect(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        if (!file.name.endsWith('.csv')) {
+            this.showCsvStatus('Please select a valid CSV file', 'error');
+            return;
+        }
+
+        this.csvFileName.textContent = file.name;
+        this.processCsvBtn.disabled = false;
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            this.csvData = event.target.result;
+        };
+        reader.readAsText(file);
+    }
+
+    processCsvFile() {
+        if (!this.csvData) return;
+
+        try {
+            const lines = this.csvData.split('\n').filter(line => line.trim());
+            const newExercises = [];
+
+            for (const line of lines) {
+                const sentence = line.trim();
+                if (sentence) {
+                    // Split sentence into words
+                    const words = sentence.split(/\s+/);
+
+                    // Create exercise object
+                    newExercises.push({
+                        words: words,
+                        correct: sentence,
+                        id: Date.now() + Math.random()
+                    });
+                }
+            }
+
+            if (newExercises.length === 0) {
+                this.showCsvStatus('No valid sentences found in CSV', 'error');
+                return;
+            }
+
+            // Add new exercises to existing ones
+            this.exercises = [...this.exercises, ...newExercises];
+            this.saveExercises();
+            this.displayExercises();
+
+            // Reset CSV upload
+            this.csvFileInput.value = '';
+            this.csvFileName.textContent = 'No file selected';
+            this.processCsvBtn.disabled = true;
+            this.csvData = null;
+
+            this.showCsvStatus(`Successfully imported ${newExercises.length} exercises!`, 'success');
+            this.showMessage(`${newExercises.length} exercises added from CSV!`, 'success');
+
+        } catch (error) {
+            this.showCsvStatus('Error processing CSV file', 'error');
+            console.error('CSV processing error:', error);
+        }
+    }
+
+    downloadCsvTemplate() {
+        const sampleContent = `The cat is sleeping peacefully
+She loves reading books daily
+We are going to school tomorrow
+The weather is beautiful today
+They completed their homework successfully
+I enjoy playing basketball with friends
+The restaurant serves delicious Italian food
+Students are studying for exams diligently
+My favorite color is blue
+Technology makes our lives easier`;
+
+        const blob = new Blob([sampleContent], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'sample_sentences.csv';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+
+        this.showMessage('Sample CSV template downloaded!', 'success');
+    }
+
+    showCsvStatus(message, type) {
+        this.csvStatus.textContent = message;
+        this.csvStatus.className = `status-message ${type}`;
+
+        setTimeout(() => {
+            this.csvStatus.textContent = '';
+            this.csvStatus.className = 'status-message';
+        }, 5000);
     }
 }
 
