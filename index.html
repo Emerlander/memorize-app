@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memorize - Word Ordering Exercise</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Word Ordering Exercise</h1>
+            <p>Click the words below to form a correct sentence</p>
+        </header>
+
+        <main>
+            <div class="exercise-container">
+                <div class="word-bank">
+                    <h3>Available Words</h3>
+                    <div id="availableWords" class="words-container">
+                        <!-- Words will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="sentence-area">
+                    <h3>Your Sentence</h3>
+                    <div id="selectedWords" class="words-container">
+                        <!-- Selected words will appear here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button id="checkBtn" class="btn-primary">Check Answer</button>
+                <button id="resetBtn" class="btn-secondary">Reset</button>
+            </div>
+
+            <div id="result" class="result hidden"></div>
+        </main>
+    </div>
+
+    <!-- Hidden admin link - accessible at bottom right -->
+    <a href="admin.html" class="admin-link">Admin</a>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f0f8f0 0%, #e8f5e8 100%);
+    min-height: 100vh;
+    color: #2d5a2d;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    color: #1e4d1e;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #5a7a5a;
+    font-size: 1.1rem;
+}
+
+.exercise-container {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+    min-height: 300px;
+}
+
+.word-bank, .sentence-area {
+    flex: 1;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(46, 125, 50, 0.1);
+    border: 2px solid #c8e6c9;
+}
+
+.word-bank h3, .sentence-area h3 {
+    color: #2e7d32;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.words-container {
+    min-height: 200px;
+    padding: 10px;
+    border: 2px dashed #a5d6a7;
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-content: flex-start;
+}
+
+.word {
+    background: #4caf50;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    user-select: none;
+}
+
+.word:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+}
+
+.word:active {
+    transform: translateY(0);
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background: #2e7d32;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #1b5e20;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+}
+
+.btn-secondary {
+    background: #81c784;
+    color: #1e4d1e;
+}
+
+.btn-secondary:hover {
+    background: #66bb6a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(129, 199, 132, 0.3);
+}
+
+.result {
+    text-align: center;
+    padding: 20px;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.result.correct {
+    background: #c8e6c9;
+    color: #1b5e20;
+    border: 2px solid #4caf50;
+}
+
+.result.incorrect {
+    background: #ffcdd2;
+    color: #c62828;
+    border: 2px solid #f44336;
+}
+
+.hidden {
+    display: none;
+}
+
+.admin-link {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #2e7d32;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.admin-link:hover {
+    background: #1b5e20;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(46, 125, 50, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    .exercise-container {
+        flex-direction: column;
+        gap: 20px;
+        min-height: auto;
+    }
+
+    .word-bank, .sentence-area {
+        padding: 15px;
+    }
+
+    .words-container {
+        min-height: 120px;
+    }
+
+    .word {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+    }
+
+    .btn-primary, .btn-secondary {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+
+    .actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .actions button {
+        width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .word-bank, .sentence-area {
+        padding: 12px;
+    }
+
+    .words-container {
+        min-height: 100px;
+    }
+
+    .word {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+}
