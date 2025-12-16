@@ -7,7 +7,20 @@
     <link rel="stylesheet" href="admin-styles.css">
 </head>
 <body>
-    <div class="container">
+    <!-- Password Protection Overlay -->
+    <div id="passwordOverlay" class="password-overlay">
+        <div class="password-container">
+            <h2>Admin Access Required</h2>
+            <p>Please enter the admin password to continue</p>
+            <form id="passwordForm">
+                <input type="password" id="passwordInput" placeholder="Enter password" required>
+                <button type="submit">Enter</button>
+                <div id="passwordError" class="error-message"></div>
+            </form>
+        </div>
+    </div>
+
+    <div class="container" id="adminContent" style="display: none;">
         <header>
             <h1>Admin Panel</h1>
             <p>Manage word ordering exercises</p>

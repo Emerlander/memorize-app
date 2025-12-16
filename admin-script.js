@@ -1,3 +1,62 @@
+// Password Protection
+const PASSWORD = 'admin123'; // Change this to your desired password
+
+class PasswordProtection {
+    constructor() {
+        this.passwordOverlay = document.getElementById('passwordOverlay');
+        this.passwordForm = document.getElementById('passwordForm');
+        this.passwordInput = document.getElementById('passwordInput');
+        this.passwordError = document.getElementById('passwordError');
+        this.adminContent = document.getElementById('adminContent');
+
+        this.init();
+    }
+
+    init() {
+        // Check if already authenticated
+        const isAuthenticated = sessionStorage.getItem('adminAuthenticated') === 'true';
+
+        if (isAuthenticated) {
+            this.showAdminPanel();
+        } else {
+            this.bindPasswordEvents();
+        }
+    }
+
+    bindPasswordEvents() {
+        this.passwordForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.checkPassword();
+        });
+    }
+
+    checkPassword() {
+        const enteredPassword = this.passwordInput.value;
+
+        if (enteredPassword === PASSWORD) {
+            sessionStorage.setItem('adminAuthenticated', 'true');
+            this.showAdminPanel();
+        } else {
+            this.passwordError.textContent = 'Incorrect password. Please try again.';
+            this.passwordInput.value = '';
+            this.passwordInput.focus();
+
+            // Clear error message after 3 seconds
+            setTimeout(() => {
+                this.passwordError.textContent = '';
+            }, 3000);
+        }
+    }
+
+    showAdminPanel() {
+        this.passwordOverlay.style.display = 'none';
+        this.adminContent.style.display = 'block';
+
+        // Initialize the admin panel after authentication
+        new AdminPanel();
+    }
+}
+
 class AdminPanel {
     constructor() {
         this.exerciseForm = document.getElementById('exerciseForm');
@@ -205,8 +264,7 @@ class AdminPanel {
 }
 
 // Global instance for onclick handlers
-let adminPanel;
-
+// Initialize password protection when page loads
 document.addEventListener('DOMContentLoaded', () => {
-    adminPanel = new AdminPanel();
+    new PasswordProtection();
 });
